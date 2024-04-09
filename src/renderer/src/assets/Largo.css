@@ -1,0 +1,99 @@
+.ButtonL {
+  padding: 20px 60px;
+  background-color: #000;
+  border: none;
+  font-size: 18px;
+  position: relative;
+  /* overflow: hidden; */
+  transition: 500ms;
+}
+
+.ButtonL .SpanL {
+  color: gray;
+  position: relative;
+  transition: 500ms;
+  transition-delay: 500ms;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.ButtonL:before {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 0%;
+  left: 50%;
+  right: 50%;
+  top: 50%;
+  bottom: 50%;
+  transition: 500ms;
+  transition-delay: 500ms;
+  background-color: red;
+  box-shadow: 0 0 10px red,
+    0 0 30px red,
+    0 0 50px red;
+}
+
+.ButtonL .divL {
+  transition: 500ms;
+  position: absolute;
+  background-color: red;
+  box-shadow: 0 0 15px red, 0 0 30px red, 0 0 50px red;
+}
+
+.ButtonL .topL {
+  width: 15px;
+  height: 2px;
+  top: 0;
+  left: 0;
+}
+
+.ButtonL .bottomL {
+  width: 15px;
+  height: 2px;
+  bottom: 0;
+  right: 0;
+}
+
+.ButtonL .leftL {
+  width: 2px;
+  height: 15px;
+  top: 0;
+  left: 0;
+}
+
+.ButtonL .rightL {
+  width: 2px;
+  height: 15px;
+  bottom: 0;
+  right: 0;
+}
+
+.ButtonL:hover {
+  color: #000;
+}
+
+.ButtonL:hover .SpanL {
+  color: #000;
+}
+
+.ButtonL:hover:before {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.ButtonL:hover .topL,
+.ButtonL:hover .bottom {
+  width: 100%;
+}
+
+.ButtonL:hover .leftL,
+.ButtonL:hover .rightL {
+  height: 100%;
+}
