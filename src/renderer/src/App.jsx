@@ -17,7 +17,9 @@ function App () {
   const [descansosLargosTime, setDescansosLargosTime] = useState()
   const [descansosTime, setDescansosTime] = useState()
   const [pomodorosTime, setPomodorosTime] = useState()
-  const { Pomodoro } = usePodomoro({ descansosLargosTime, descansosTime, pomodorosTime })
+  const [descansosLargos, setDescansosLargos] = useState(0)
+  const [descansos, setDescansos] = useState(0)
+  const [pomodoros, setPomodoros] = useState(0)
 
   // Recuperar objetos de elemento datos
   const handleSubmit = (event) => {
@@ -28,7 +30,9 @@ function App () {
 
   // Reiniciar cronometro [Reset timer] -> TODO NO FUNCIONA [DO NOT WORKS]
   const restart = () => {
-
+    setIsActive(false)
+    setMinutes(0)
+    setSeconds(0)
   }
 
   // Cuenta regresiva
@@ -44,6 +48,7 @@ function App () {
             // audio
             clearInterval(intervalID)
             setIsActive(false)
+
             // logica del pomodoro
             if (tipo === 'pomodoro') {
               if (ciclosCompletados < 3) {
@@ -56,19 +61,23 @@ function App () {
               setTipo('pomodoro')
               setCiclosCompletados(prev => prev + 1)
             } else if (tipo === 'descansoLargo') {
-              setTipo('pomodoro')
-              setIsActive(false)
+              setTipo('pomodoro') // Cambia al tipo "pomodoro" después de un descanso largo
             }
+
             // Reiniciar el temporizador al inicio de cada tipo
             if (tipo === 'pomodoro') {
               setMinutes(pomodorosTime)
+              setPomodoros(pod => pod + 1)
               setIsActive(true)
             } else if (tipo === 'descanso') {
               setMinutes(descansosTime)
+              setDescansos(desc => desc + 1)
               setIsActive(true)
             } else if (tipo === 'descansoLargo') {
               setMinutes(descansosLargosTime)
-              setIsActive(true)
+              setDescansosLargos(descLargos => descLargos + 1)
+              setIsActive(false) // Desactiva el temporizador después de un descanso largo
+              clearInterval(intervalID)
             }
           } else {
             if (minutes === 0) {
@@ -89,8 +98,8 @@ function App () {
 
   // Opciones predefinidas
   const popular = () => {
-    setDescansosLargosTime(3)
-    setDescansosTime(2)
+    setDescansosLargosTime(1)
+    setDescansosTime(1)
     setPomodorosTime(1)
     setIsActive(true)
   }
@@ -98,7 +107,7 @@ function App () {
   return (
     <main>
       <Container>
-        <Header descansos={1} pomodoros={1} descansosLargos={1} />
+        <Header descansos={descansos} pomodoros={pomodoros} descansosLargos={descansosLargos} />
         <section className='py-20'>
           <p className='text-center font-black text-8xl'>
             {`
