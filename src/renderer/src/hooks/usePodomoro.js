@@ -32,6 +32,10 @@ export function usePodomoro ({ pomodorosTime, descansosTime, descansosLargosTime
               setIsActive(false)
 
               // logica del pomodoro
+
+              if (tipo !== ' descansoLargo') {
+
+              }
               if (tipo === 'pomodoro') {
                 if (ciclosCompletados < 3) {
                   setTipo('descanso')
@@ -42,10 +46,8 @@ export function usePodomoro ({ pomodorosTime, descansosTime, descansosLargosTime
               } else if (tipo === 'descanso') {
                 setTipo('pomodoro')
                 setCiclosCompletados(prev => prev + 1)
-              } else if (tipo === 'descansoLargo') {
-                setTipo('pomodoro')
-                setIsActive(false)
               }
+
               // Reiniciar el temporizador al inicio de cada tipo
               if (tipo === 'pomodoro') {
                 setMinutes(POMODOROS_TIME)
