@@ -2,11 +2,25 @@ import React, { useEffect, useState } from 'react'
 import { Container } from './components/Container'
 import { Header } from './components/Header'
 import { usePodomoro } from './hooks/usePodomoro'
+import Restart from './assets/icos/restart.svg'
+import Pause from './assets/icos/pause.svg'
+import Start from './assets/icos/start.svg'
 import './assets/Button.css'
 import './assets/Popular.css'
 import './assets/Medio.css'
 import './assets/Largo.css'
 
+function StartImage () {
+  return (
+    <img src={Start} alt='Start' />
+  )
+}
+
+function PauseImage () {
+  return (
+    <img src={Pause} alt='Pause' />
+  )
+}
 function App () {
   const [isActive, setIsActive] = useState(false)
   const [seconds, setSeconds] = useState(0)
@@ -109,19 +123,24 @@ function App () {
       <Container>
         <Header descansos={descansos} pomodoros={pomodoros} descansosLargos={descansosLargos} />
         <section className='py-20'>
-          <p className='text-center font-black text-8xl'>
+          <p className='text-center font-semibold text-9xl'>
             {`
             ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}
             `}
           </p>
           <div>
-            <button onClick={() => setIsActive(!isActive)} className='button'>{isActive ? '⏸' : '▶'}</button>
+            <div className='flex'>
+              <button onClick={() => setIsActive(!isActive)} className='button mx-3'>{isActive ? (<PauseImage />) : (<StartImage />)}</button>
 
-            <button onClick={() => restart} className='mx-2 p-2 border border-white border-solid rounded-lg' type='button'>🔁</button>
+              <button onClick={() => restart} className='button mx-3' type='button'>
+                <img src={Restart} alt='restart' />
+              </button>
+            </div>
+
           </div>
         </section>
-        <section className='grid grid-cols-2 bottom-0'>
-          <div className='flex flex-col max-w-52 gap-y-3'>
+        <section>
+          <div className='flex gap-x-16 items-center justify-center mb-3'>
             <button onClick={popular} className='Button'>
               <span className='Span'>Popular</span>
               <div className='top div' />
