@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 html {
-  background: black;
   color: white;
   font-family: "Onest", sans-serif;
   font-optical-sizing: auto;

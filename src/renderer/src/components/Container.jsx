@@ -1,5 +1,5 @@
 export function Container ({ children }) {
   return (
-    <div className="max-w-screen-sm mx-auto">{children}</div>
+    <div className='max-w-[480px] mx-auto'>{children}</div>
   )
 }
