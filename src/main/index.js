@@ -1,13 +1,15 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, globalShortcut } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 
-function createWindow() {
+function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 900,
-    height: 670,
+    width: 580,
+    height: 350,
+    transparent: true,
+    frame: false,
     show: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
@@ -17,6 +19,17 @@ function createWindow() {
     }
   })
 
+  const toggle = ' CommandOrControl+6'
+  let isOverlay = false
+
+  globalShortcut.register(toggle, () => {
+    isOverlay = !isOverlay
+    mainWindow.setIgnoreMouseEvents(isOverlay)
+    mainWindow.setAlwaysOnTop(isOverlay)
+
+    mainWindow.webContents.send('overlay-mode', isOverlay)
+    console.log('overlay', isOverlay)
+  })
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
@@ -28,8 +41,8 @@ function createWindow() {
 
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
-  if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
-    mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
+  if (is.dev && process.env.ELECTRON_RENDERER_URL) {
+    mainWindow.loadURL(process.env.ELECTRON_RENDERER_URL)
   } else {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }
@@ -50,8 +63,27 @@ app.whenReady().then(() => {
   })
 
   // IPC test
-  ipcMain.on('ping', () => console.log('pong'))
+  // ipcMain.on('ping', () => console.log('pong'))
+  ipcMain.on('close-window', () => {
+    const currentWindow = BrowserWindow.getFocusedWindow()
+    if (currentWindow) {
+      currentWindow.close()
+    }
+  })
 
+  ipcMain.on('minimize-window', () => {
+    const currentWindow = BrowserWindow.getFocusedWindow()
+    if (currentWindow) {
+      currentWindow.minimize()
+    }
+  })
+
+  ipcMain.on('maximize-window', () => {
+    const currentWindow = BrowserWindow.getFocusedWindow()
+    if (currentWindow) {
+      currentWindow.maximize()
+    }
+  })
   createWindow()
 
   app.on('activate', function () {
