@@ -1,9 +1,9 @@
 {
-  "name": "pomodoro-app",
+  "name": "mafifa-pomodoro",
   "version": "1.0.0",
-  "description": "An Electron application with React",
+  "description": "Solo intento administrar mejor tu tiempo",
   "main": "./out/main/index.js",
-  "author": "example.com",
+  "author": "Mafifa",
   "homepage": "https://electron-vite.org",
   "scripts": {
     "format": "prettier --write .",
