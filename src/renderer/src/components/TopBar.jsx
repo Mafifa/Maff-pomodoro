@@ -13,7 +13,7 @@ function TopBar () {
 
   return (
     <div className='ui-titlebar'>
-      <div className='ui-titletext'>Mafifa Cronometro</div>
+      <div className='ui-titletext'>Cronometro Pomodoro</div>
 
       <div className='ui-titlecontrols'>
         <button className='ui-btn minimize' onClick={minizeButton}>

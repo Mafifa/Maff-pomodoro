@@ -1,6 +1,6 @@
-# electron-app
+# POMODORO-APP
 
-An Electron application with React
+Recuerda usar la funcion CTR + 6 para entrar en modo **Intangible**
 
 ## Recommended IDE Setup
 
@@ -8,27 +8,30 @@ An Electron application with React
 
 ## Project Setup
 
-### Install
+### Frameworks y Herramientas Principales
 
-```bash
-$ npm install
-```
+- **Electron**: para construir aplicaciones de escritorio.
+- **Vite**: para el desarrollo y construcción rápida del proyecto.
+- **React**: como la biblioteca de interfaz de usuario.
 
-### Development
+### Dependencias Principales
 
-```bash
-$ npm run dev
-```
+- **@electron-toolkit/preload** y **@electron-toolkit/utils**: herramientas y utilidades para Electron.
+- **react** y **react-dom**: bibliotecas principales de React.
 
-### Build
+### Herramientas de Desarrollo
 
-```bash
-# For windows
-$ npm run build:win
+- **eslint** y **prettier**: para linting y formateo del código.
+- **@vitejs/plugin-react**: para soporte de React en Vite.
+- **electron-builder**: para construir paquetes de la aplicación Electron.
+- **tailwindcss**: para el diseño y estilos CSS.
 
-# For macOS
-$ npm run build:mac
+### Scripts
 
-# For Linux
-$ npm run build:linux
-```
+- **format**: formateo del código usando Prettier.
+- **lint**: linting del código con ESLint.
+- **start**: iniciar una vista previa de la aplicación con Electron y Vite.
+- **dev**: iniciar el entorno de desarrollo.
+- **build**: construir la aplicación para producción.
+- **postinstall**: instalación de dependencias necesarias para Electron Builder.
+- **build:unpack**, **build:win**, **build:mac**, **build:linux**: scripts para construir la aplicación para diferentes plataformas.
