@@ -2,11 +2,11 @@
 
 Recuerda usar la funcion CTR + 6 para entrar en modo **Intangible**
 
-## Recommended IDE Setup
+## IDE Setup Recomendado
 
 - [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
-## Project Setup
+## Setup del proyecto
 
 ### Frameworks y Herramientas Principales
 
